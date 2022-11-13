@@ -90,3 +90,11 @@ var finances = [
 function numberOfMonths(){
     return finances.length
 }
+
+function netProfit(){
+    total = 0
+    for (i in finances){
+        total += finances[i][1]
+    }
+    return total
+}
