@@ -98,3 +98,15 @@ function netProfit(){
     }
     return total
 }
+
+function averageChanges(){
+    totalChange = 0
+    for (i in finances){
+        if (i != 0){
+            change = finances[i][1] - finances[i-1][1]
+            totalChange += change
+        }
+    }
+    averageChange = totalChange/finances.length
+    return averageChange
+}
