@@ -125,6 +125,23 @@ function greatestIncreaseInProfits(){
     return [greatestIncrease, finances[greatestIncreaseIndex][0]]
 }
 
-[greatestIncrease, date] = greatestIncreaseInProfits()
+// [greatestIncrease, date] = greatestIncreaseInProfits()
 
-console.log(greatestIncrease, date)
+increaseConditional = "(change > greatestChange)";
+decreaseConditional = "(change < greatestChange)";
+
+function greatestChangeInProfits(conditional){
+    greatestChangeIndex = 1
+    greatestChange = finances[1][1] - finances[0][1]
+    for (i in finances){
+        if (i == 0){continue}
+        change = finances[i][1] - finances[i-1][1]
+        if (eval(conditional)){
+            greatestChangeIndex = i;
+            greatestChange = change;
+        }
+    }
+    return [greatestChange, finances[greatestChangeIndex][0]]
+}
+
+// [greatestChange, date] = greatestChangeInProfits(decreaseConditional)
