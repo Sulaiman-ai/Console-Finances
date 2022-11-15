@@ -107,25 +107,9 @@ function averageChanges(){
             totalChange += change
         }
     }
-    averageChange = totalChange/finances.length
+    averageChange = (totalChange/finances.length).toFixed(2)
     return averageChange
 }
-
-function greatestIncreaseInProfits(){
-    greatestIncreaseIndex = 1
-    greatestIncrease = finances[1][1] - finances[0][1]
-    for (i in finances){
-        if (i == 0){continue}
-        change = finances[i][1] - finances[i-1][1]
-        if (change > greatestIncrease){
-            greatestIncreaseIndex = i;
-            greatestIncrease = change;
-        }
-    }
-    return [greatestIncrease, finances[greatestIncreaseIndex][0]]
-}
-
-// [greatestIncrease, date] = greatestIncreaseInProfits()
 
 increaseConditional = "(change > greatestChange)";
 decreaseConditional = "(change < greatestChange)";
@@ -141,7 +125,25 @@ function greatestChangeInProfits(conditional){
             greatestChange = change;
         }
     }
-    return [greatestChange, finances[greatestChangeIndex][0]]
+    date = finances[greatestChangeIndex][0]
+    return {greatestChange, date}
 }
 
-// [greatestChange, date] = greatestChangeInProfits(decreaseConditional)
+greatestIncrease = greatestChangeInProfits(increaseConditional)
+greatestDecrease = greatestChangeInProfits(decreaseConditional)
+
+output = `Financial Analysis
+
+----------------------------
+
+Total Months: ${numberOfMonths()}
+
+Total: $${netProfit()}
+
+Average Change: $${averageChanges()}
+
+Greatest Increase in Profits: ${greatestIncrease.date} ($${greatestIncrease.greatestChange})
+
+Greatest Decrease in Profits: ${greatestDecrease.date} ($${greatestDecrease.greatestChange})`
+
+console.log(output)
