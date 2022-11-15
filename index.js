@@ -110,3 +110,21 @@ function averageChanges(){
     averageChange = totalChange/finances.length
     return averageChange
 }
+
+function greatestIncreaseInProfits(){
+    greatestIncreaseIndex = 1
+    greatestIncrease = finances[1][1] - finances[0][1]
+    for (i in finances){
+        if (i == 0){continue}
+        change = finances[i][1] - finances[i-1][1]
+        if (change > greatestIncrease){
+            greatestIncreaseIndex = i;
+            greatestIncrease = change;
+        }
+    }
+    return [greatestIncrease, finances[greatestIncreaseIndex][0]]
+}
+
+[greatestIncrease, date] = greatestIncreaseInProfits()
+
+console.log(greatestIncrease, date)
