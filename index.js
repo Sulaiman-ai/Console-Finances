@@ -86,3 +86,74 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+// Calculates the number of months in the period
+function numberOfMonths(){
+    return finances.length
+}
+
+// Calculates total profit over the period
+function netProfit(){
+    total = 0
+    for (i in finances){
+        total += finances[i][1]
+    }
+    return total
+}
+
+// Calculates the average changes in profit from month to month over the period
+function averageChanges(){
+    totalChange = 0
+    for (i in finances){
+        if (i != 0){
+            change = finances[i][1] - finances[i-1][1]
+            totalChange += change
+        }
+    }
+    averageChange = (totalChange/finances.length).toFixed(2)
+    return averageChange
+}
+
+// Conditional statements to be used as a argument in the greatestChangeInProfits()
+increaseConditional = "(change > greatestChange)";
+decreaseConditional = "(change < greatestChange)";
+
+// Calculates the greatest increase or decrease in profits depending on the argument used
+// Last task asked for the greatest decrease in loss, but the final example calculated greatest decrease in profit
+// I calculated greatest decrease in profit, as it made the most sense
+function greatestChangeInProfits(conditional){
+    greatestChangeIndex = 1
+    greatestChange = finances[1][1] - finances[0][1]
+    for (i in finances){
+        if (i == 0){continue}
+        change = finances[i][1] - finances[i-1][1]
+        if (eval(conditional)){
+            greatestChangeIndex = i;
+            greatestChange = change;
+        }
+    }
+    date = finances[greatestChangeIndex][0]
+    return {greatestChange, date}
+}
+
+// Function returns an object containing the greatest change in profit and the date of that change
+// Object is assigned here
+greatestIncrease = greatestChangeInProfits(increaseConditional)
+greatestDecrease = greatestChangeInProfits(decreaseConditional)
+
+// Final output for the program
+output = `Financial Analysis
+
+----------------------------
+
+Total Months: ${numberOfMonths()}
+
+Total: $${netProfit()}
+
+Average Change: $${averageChanges()}
+
+Greatest Increase in Profits: ${greatestIncrease.date} ($${greatestIncrease.greatestChange})
+
+Greatest Decrease in Profits: ${greatestDecrease.date} ($${greatestDecrease.greatestChange})`
+
+console.log(output)
