@@ -119,6 +119,8 @@ increaseConditional = "(change > greatestChange)";
 decreaseConditional = "(change < greatestChange)";
 
 // Calculates the greatest increase or decrease in profits depending on the argument used
+// Last task asked for the greatest decrease in loss, but the final example calculated greatest decrease in profit
+// I calculated greatest decrease in profit, as it made the most sense
 function greatestChangeInProfits(conditional){
     greatestChangeIndex = 1
     greatestChange = finances[1][1] - finances[0][1]
