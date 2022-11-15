@@ -87,10 +87,12 @@ var finances = [
 ['Feb-2017', 671099]
 ];
 
+// Calculates the number of months in the period
 function numberOfMonths(){
     return finances.length
 }
 
+// Calculates total profit over the period
 function netProfit(){
     total = 0
     for (i in finances){
@@ -99,6 +101,7 @@ function netProfit(){
     return total
 }
 
+// Calculates the average changes in profit from month to month over the period
 function averageChanges(){
     totalChange = 0
     for (i in finances){
@@ -111,9 +114,11 @@ function averageChanges(){
     return averageChange
 }
 
+// Conditional statements to be used as a argument in the greatestChangeInProfits()
 increaseConditional = "(change > greatestChange)";
 decreaseConditional = "(change < greatestChange)";
 
+// Calculates the greatest increase or decrease in profits depending on the argument used
 function greatestChangeInProfits(conditional){
     greatestChangeIndex = 1
     greatestChange = finances[1][1] - finances[0][1]
@@ -129,9 +134,12 @@ function greatestChangeInProfits(conditional){
     return {greatestChange, date}
 }
 
+// Function returns an object containing the greatest change in profit and the date of that change
+// Object is assigned here
 greatestIncrease = greatestChangeInProfits(increaseConditional)
 greatestDecrease = greatestChangeInProfits(decreaseConditional)
 
+// Final output for the program
 output = `Financial Analysis
 
 ----------------------------
